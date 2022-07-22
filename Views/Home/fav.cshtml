@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Real_Estate.Data.PostFav>
+
+<p>
+    الاعلانات المفضلة
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.postId) <br>
+                    @if (item.Post != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Post.phone) <br>
+                        @Html.DisplayFor(modelItem => item.Post.email)
+
+                        <br>
+                        @Html.DisplayFor(modelItem => item.Post.Category)
+
+                        <br>
+                        <span class="text-danger"> @Html.DisplayFor(modelItem => item.Post.Price) : السعر </span>
+                        
+                        <br>
+                        @Html.DisplayFor(modelItem => item.Post.PostFor)
+                    }
+                </td>
+
+                <td>
+
+                    @if (item.Post != null && item.Post.Images != null)
+                    {
+                        @foreach (var t in item.Post?.Images)
+                        {
+                            <img width="100" height="100" src="@t.path.Split("wwwroot")[1]" class="" alt="...">
+
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-controller="posts" asp-action="Details" asp-route-id="@item.Post.id">تفاصيل الاعلان</a> |
+                    
+                    <a class="btn btn-danger" href="@Url.Action("removefav","posts",new{postId=item.postId})" target="">حذف المفضلة</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

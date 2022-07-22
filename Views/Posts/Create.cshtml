@@ -1,0 +1,138 @@
+﻿@model Real_Estate.Data.Post
+
+@{
+    ViewData["Title"] = "اعلان جديد";
+}
+
+<div class="row" style="direction:rtl">
+<style>
+    .form-group{
+        padding:8px 0;
+    }
+</style>
+<h1>اضافة تفاصيل العقار</h1>
+
+<h4>اعلان جديد</h4>
+<hr />
+    <div class="col-md-6">
+        <form asp-action="Create"  enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="ImagesPath" class="control-label">صور العقار</label>
+                <input multiple  asp-for="ImagesPath" class="form-control custom-file-input" />
+                <span asp-validation-for="ImagesPath" class="text-danger"></span>
+            </div>
+
+            <div class="form-group d-none">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" value="@User.Identity?.Name"/>
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="phone" class="control-label"></label>
+                <input asp-for="phone" class="form-control" />
+                <span asp-validation-for="phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discription" class="control-label"></label>
+                <textarea asp-for="Discription" class="form-control" ></textarea>
+                <span asp-validation-for="Discription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellerType" class="control-label"></label>
+                @*<input asp-for="SellerType" class="form-control" />*@
+                <select asp-for="SellerType" class ="form-control" >
+                    <option value=""></option>
+                    <option value="مالك">
+                        مالك
+                    </option>
+                    <option value="وسيط">
+                        وسيط
+                    </option>
+                </select>
+                <span asp-validation-for="SellerType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <select asp-for="Category" class ="form-control" >
+                    <option value=""></option>
+                    <option value="سكني">
+                        سكني
+                    </option>
+                    <option value="تجاري">
+                        تجاري
+                    </option>
+                    <option value="ارض">
+                        ارض
+                    </option>
+                    <option value="شاليه">
+                        شاليه
+                    </option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="PropertyType" class="control-label"></label>
+                <select asp-for="PropertyType" class ="form-control" >
+                    <option value="_">_</option>
+                    
+                </select>
+                <span asp-validation-for="PropertyType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostFor" class="control-label"></label>
+                <select asp-for="PostFor" class ="form-control" >
+                    <option value="_">_</option>
+                    <option value="بيع">بيع</option>
+                    <option value="ايجار">ايجار</option>
+                    <option value="مشاركة">مشاركة</option>
+                    
+                </select>
+                <span asp-validation-for="PostFor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="govarnateId" class="control-label"></label>
+                <select asp-for="govarnateId" class ="form-control" asp-items="ViewBag.govarnateId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="regionId" class="control-label"></label>
+                <select asp-for="regionId" class ="form-control" asp-items="ViewBag.regionId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Street" class="control-label"></label>
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Area" class="control-label"></label>
+                <input type="number" min="0" asp-for="Area" class="form-control" />
+                <span asp-validation-for="Area" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rooms" class="control-label"></label>
+                <input asp-for="Rooms" min="0" class="form-control" />
+                <span asp-validation-for="Rooms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PathRoom" class="control-label"></label>
+                <input asp-for="PathRoom" min="0" class="form-control" />
+                <span asp-validation-for="PathRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input type="number" min="0" asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Real_Estate.Data.postRequest>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.custEmail)
+                </td>
+
+                <td>
+                    @if (item.isAccept == 1)
+                    {
+                        <a class="btn btn-primary" href="#" >تم قبول الطلب</a> 
+                    }
+                    else
+                    {
+                        <a class="btn btn-success" asp-controller="posts" asp-action="accept" asp-route-id="@item.id">قبول الطلب</a> 
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
