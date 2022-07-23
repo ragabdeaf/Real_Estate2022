@@ -23,7 +23,11 @@ namespace Real_Estate.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = await _context.post.Include(p => p.govarnate).Include(p => p.region).ToListAsync();
+            List<Post> applicationDbContext = new List<Post>();
+
+            applicationDbContext = await _context.post.Include(p => p.govarnate).Include(p => p.region).ToListAsync();
+
+
             return applicationDbContext != null ? View(applicationDbContext) : Problem("Entity set 'ApplicationDbContext.post'  is null.");
         }
         public async Task<IActionResult> removefav(int postId)
@@ -290,7 +294,15 @@ namespace Real_Estate.Controllers
                 return NotFound();
             }
 
-            return View(post);
+
+            if (post != null)
+            {
+                _context.post.Remove(post);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("index", "home");
+
         }
 
         // POST: Posts/Delete/5

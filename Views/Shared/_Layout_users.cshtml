@@ -58,8 +58,9 @@
         feather.replace();
     </script>
     <script src="~/assets/js/theme.js"></script>
-
+    <script  src="~/lib/jquery/dist/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

@@ -51,15 +51,15 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <a style="margin-top:10px;margin-right:20px" class="text-1000" asp-area="" asp-controller="home" asp-action="fav">
-                            <svg class="feather feather-heart me-3" 
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
-                            stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        <svg class="feather feather-heart me-3"
+                         xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
 
-                                </path>
-                            </svg>
-                        </a>
+                            </path>
+                        </svg>
+                    </a>
 
                     <a style="margin-top:10px" class="text-1000" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                         <svg class="feather feather-user me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -69,10 +69,10 @@
                         <span id="sessionEmail">@User.Identity?.Name</span>
                     </a>
 
-                    
+
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                         <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                        
+
                     </form>
                 }
                 else
@@ -111,6 +111,38 @@
 <section class="py-0">
     <div class="container">
         <div class="row h-100">
+
+            @*<div class="form-group">
+            <label asp-for="govarnateId" class="control-label"></label>
+            <select asp-for="govarnateId" class ="form-control" asp-items="ViewBag.govarnateId"></select>
+            </div>
+            <div class="form-group">
+            <label asp-for="regionId" class="control-label"></label>
+            <select asp-for="regionId" class ="form-control" asp-items="ViewBag.regionId"></select>
+            </div>*@
+
+            <div class="form-group col-md-4">
+                <label class="control-label"> محافظة</label>
+
+                <select id="govarnateId" class="form-control" asp-items="@ViewBag.govarnateId"></select>
+
+            </div>
+
+            <div class="form-group col-md-4">
+                <label class="control-label">منطقة</label>
+
+                <select id="regionId" class="form-control" asp-items="@ViewBag.regionId"></select>
+
+            </div>
+
+            <div class="form-group col-md-2" style="margin-top:30px">
+
+                <button id="btnSearch" class="btn btn-success">بحث</button>
+
+            </div>
+
+
+
             <div class="col-lg-7 mx-auto text-center mb-6">
                 <h5 class="fs-3 fs-lg-5 lh-sm mb-3">الاحدث اضافة</h5>
             </div>
@@ -477,3 +509,6 @@
 </section>
 <!-- <section> close ============================-->
 <!-- ============================================-->
+@section Scripts{
+    <script src="~/js/homeIndex.js"></script>
+                }
